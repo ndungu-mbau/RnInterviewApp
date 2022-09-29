@@ -1,4 +1,3 @@
-import {useCallback, useEffect, useState, useMemo} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,33 +6,11 @@ import {
   StatusBar,
 } from 'react-native';
 
+import {useTimer} from './use-timer';
+
 export default function App() {
-  const [secondsPassed, setSecondsPassed] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    let interval;
-    if (isActive) {
-      interval = setInterval(() => setSecondsPassed(prev => prev + 1), 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isActive]);
-
-  const toggle = useCallback(() => setIsActive(!isActive));
-  const reset = useCallback(() => {
-    setIsActive(false);
-    setSecondsPassed(0);
-  });
-
-  const {minutes, seconds} = useMemo(() => {
-    const minutes = Math.floor(secondsPassed / 60);
-    const seconds = secondsPassed % 60;
-
-    return {
-      minutes,
-      seconds,
-    };
-  }, [secondsPassed]);
+  //Import our custom hook, and destructure the values we need
+  const {minutes, seconds, toggle, reset} = useTimer();
 
   return (
     <View style={styles.container}>
