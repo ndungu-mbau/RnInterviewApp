@@ -10,7 +10,7 @@ import {useTimer} from './use-timer';
 
 export default function App() {
   //Import our custom hook, and destructure the values we need
-  const {minutes, seconds, toggle, reset} = useTimer();
+  const {minutes, seconds, isActive, toggle, reset} = useTimer();
 
   return (
     <View style={styles.container}>

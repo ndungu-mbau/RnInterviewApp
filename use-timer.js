@@ -56,6 +56,7 @@ export const useTimer = () => {
   return {
     minutes,
     seconds,
+    isActive,
 
     toggle,
     reset,
